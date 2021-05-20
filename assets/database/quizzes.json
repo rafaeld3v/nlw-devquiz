@@ -6,12 +6,12 @@
         "questionAnswered": 1,
         "questions": [
           {
-            "title": "Esta curtindo o Flutter?",
+            "title": "Qual linguagem é utilizada no Flutter?",
             "answers": [
-                {"title": "Estou curtindo"},
-                {"title": "Estou amando"},
-                {"title": "Estou adorando"},
-                {"title": "Show de bola!", "isRight": true}
+                {"title": "Javascript"},
+                {"title": "Java"},
+                {"title": "Dart", "isRight": true},
+                {"title": "C++"}
             ]
           }
         ]
