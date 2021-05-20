@@ -1,4 +1,5 @@
 import 'package:devquiz/core/app_images.dart';
+import 'package:devquiz/home/home_repository.dart';
 import 'package:devquiz/home/home_state.dart';
 import 'package:devquiz/shared/models/answered_model.dart';
 import 'package:devquiz/shared/models/question_model.dart';
@@ -14,53 +15,17 @@ class HomeController {
   UserModel? user;
   List<QuizModel>? quizzes;
 
+  final repository = HomeRepository();
+
   void getUser() async {
     state = HomeState.loading;
-    await Future.delayed(Duration(seconds: 2));
-    user = UserModel(
-      name: "Rafael D3v",
-      photoUrl: "https://avatars.githubusercontent.com/u/66738621?v=4",
-    );
+    user = await repository.getUser();
     state = HomeState.success;
   }
 
   void getQuizzes() async {
-    await Future.delayed(Duration(seconds: 2));
     state = HomeState.loading;
-    quizzes = [
-      QuizModel(
-        title: "NLW 5 Flutter",
-        imagem: AppImages.blocks,
-        level: Level.facil,
-        questionAnswered: 1,
-        questions: [
-          QuestionModel(
-            title: "Esta curtindo o Flutter?",
-            answers: [
-              AwnserModel(title: "Estou curtindo"),
-              AwnserModel(title: "Estou amando"),
-              AwnserModel(title: "Estou adorando"),
-              AwnserModel(
-                title: "Show de bola!",
-                isRight: true,
-              ),
-            ],
-          ),
-          QuestionModel(
-            title: "Esta curtindo o Flutter?",
-            answers: [
-              AwnserModel(title: "Estou curtindo"),
-              AwnserModel(title: "Estou amando"),
-              AwnserModel(title: "Estou adorando"),
-              AwnserModel(
-                title: "Show de bola!",
-                isRight: true,
-              ),
-            ],
-          ),
-        ],
-      ),
-    ];
+    quizzes = await repository.getQuizzes();
     state = HomeState.success;
   }
 }
